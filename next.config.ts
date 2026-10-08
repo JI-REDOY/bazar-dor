@@ -8,6 +8,16 @@ const nextConfig: NextConfig = {
                 hostname: "api.api-store.workers.dev",
                 pathname: "/**",
             },
+            {
+                protocol: "https",
+                hostname: "lh3.googleusercontent.com",
+                pathname: "/**",
+            },
+            {
+                protocol: "https",
+                hostname: "avatars.githubusercontent.com",
+                pathname: "/**",
+            },
         ],
     },
 };

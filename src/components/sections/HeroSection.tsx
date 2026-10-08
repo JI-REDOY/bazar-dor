@@ -34,7 +34,7 @@ const HeroSection = () => {
                         alt="বাজারের পণ্য"
                         width={320}
                         height={320}
-                        className="object-contain"
+                        className="w-auto h-auto max-w-full object-contain"
                         priority
                     />
                 </div>

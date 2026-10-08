@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import NavLinks from "./NavLinks";
 import Marquee from "./Marquee";
+import AuthButtons from "@/components/auth/AuthButtons";
 import { formatBanglaDate } from "@/lib/formatDate";
 import { fetchWithRevalidate } from "@/lib/api";
 import { Product, Category } from "@/types/product";
@@ -30,20 +30,7 @@ const Header = async () => {
                     </div>
                 </Link>
 
-                <div className="flex items-center gap-3">
-                    <Link
-                        href="/signin"
-                        className="text-sm font-medium text-gray-700 hover:text-[#16a34a] px-3 py-2 transition-colors duration-200"
-                    >
-                        সাইন ইন
-                    </Link>
-                    <Link
-                        href="/signup"
-                        className="text-sm font-medium bg-[#16a34a] hover:bg-[#15803d] text-white px-4 py-2 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-                    >
-                        সাইন আপ
-                    </Link>
-                </div>
+                <AuthButtons />
             </div>
 
             <NavLinks categories={categories || []} />
