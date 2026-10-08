@@ -1,0 +1,37 @@
+export type ChangeDirection = "up" | "down" | "flat";
+
+export type ProductChange = {
+    dir: ChangeDirection;
+    pct: number;
+};
+
+export type Market = {
+    market: string;
+    division: string;
+    min: number;
+    max: number;
+};
+
+export type Product = {
+    id: number;
+    slug: string;
+    nameBn: string;
+    category: string;
+    categoryNameBn: string;
+    categoryIcon: string;
+    unit: string;
+    image: string;
+    today: number;
+    yesterday: number;
+    lastWeek: number;
+    lastMonth: number;
+    change: ProductChange;
+    markets: Market[];
+};
+
+export type Category = {
+    id: string;
+    slug: string;
+    nameBn: string;
+    icon: string;
+};
