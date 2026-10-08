@@ -5,7 +5,7 @@ import { mongodbAdapter } from "@better-auth/mongo-adapter";
 const client = new MongoClient(process.env.MONGODB_URL as string);
 const db = client.db("bazar-dor");
 
-export const auth = betterAuth({
+export const betterAuthInstance = betterAuth({
     emailAndPassword: {
         enabled: true,
     },
@@ -25,3 +25,5 @@ export const auth = betterAuth({
     },
     database: mongodbAdapter(db, { client }),
 });
+
+export const auth = betterAuthInstance;
