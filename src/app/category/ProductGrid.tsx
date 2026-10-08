@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import ProductCard from "@/components/cards/ProductCard";
-
 import { Product } from "@/types/product";
 import { toBanglaNumber } from "@/lib/banglaNumber";
 import SortDropdown from "@/components/category/SortDropdown";
