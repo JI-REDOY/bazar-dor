@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# 🛒 বাজার দর (Bazar Dor)
 
-First, run the development server:
+**বাংলাদেশি নিত্যপ্রয়োজনীয় পণ্যের Price Tracking ওয়েবসাইট**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার আজকের দাম, পরিবর্তন এবং বাজারভিত্তিক তুলনা — সব এক জায়গায়।
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![BetterAuth](https://img.shields.io/badge/BetterAuth-black?style=flat-square)](https://better-auth.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+</div>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🔗 Live Links
 
-To learn more about Next.js, take a look at the following resources:
+| | |
+|:--|:--|
+| 🌐 **Live Site** | [Vercel Link](#) |
+| 📦 **GitHub Repo** | [GitHub Link](#) |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Technologies Used
 
-## Deploy on Vercel
+| Technology | Purpose |
+|:-----------|:--------|
+| **Next.js 16** (App Router) | Framework + Routing |
+| **TypeScript** | Type Safety |
+| **Tailwind CSS** | Styling + Responsiveness |
+| **BetterAuth** | Authentication |
+| **MongoDB** | User Database |
+| **Noto Serif Bengali** | Bangla Font |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ✨ Features
+
+| # | Feature | Description |
+|:--|:--------|:------------|
+| 1 | 📊 **আজকের দাম এক নজরে** | Top 6 risers ▲ ও Top 6 fallers ▼ |
+| 2 | 🏷️ **Category Browsing** | ৮টি category অনুযায়ী পণ্য দেখানো |
+| 3 | 💹 **Product Details** | সর্বনিম্ন, সর্বোচ্চ, গড় দাম + ১২ বাজারের তুলনা |
+| 4 | 🔐 **BetterAuth** | Email/Password + Google + GitHub login |
+| 5 | ⚡ **Sorting** | দাম কম থেকে বেশি / বেশি থেকে কম |
+| 6 | 📱 **Fully Responsive** | Mobile, Tablet, Desktop |
+| 7 | 🔒 **Protected Route** | Product Details login ছাড়া access নেই |
+| 8 | 👤 **My Profile** | তথ্য view + update |
+| 9 | ⏳ **Loading Skeletons** | সব page-এ |
+| 10 | 🚫 **Custom 404** | Invalid route-এর জন্য friendly page |
+
+---
+
+<div align="center">
+
+**Programming Hero B14 Assignment 7**
+
+Made with ❤️ by **Rezwan Ahmed**
+
+</div>
