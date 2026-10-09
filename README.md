@@ -20,8 +20,8 @@
 
 | | |
 |:--|:--|
-| 🌐 **Live Site** | [Vercel Link](#) |
-| 📦 **GitHub Repo** | [GitHub Link](#) |
+| 🌐 **Live Site** | [daily-bazar-dor-peach.vercel.app](https://daily-bazar-dor-peach.vercel.app) |
+| 📦 **GitHub Repo** | [JI-REDOY/bazar-dor](https://github.com/JI-REDOY/bazar-dor) |
 
 ---
 
@@ -57,8 +57,6 @@
 
 <div align="center">
 
-**Programming Hero B14 Assignment 7**
-
-Made with ❤️ by **Rezwan Ahmed**
+Made with ❤️ by **MD JAHIRUL ISLAM REDOY**
 
 </div>
