@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { useToast } from "@/context/ToastContext";
 import GoogleIcon from "@/components/icons/GoogleIcon";
@@ -16,6 +16,16 @@ const SignInPage = () => {
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const hasShownToast = useRef(false);
+
+    useEffect(() => {
+        if (searchParams.get("callbackUrl") && !hasShownToast.current) {
+            hasShownToast.current = true;
+            toast.info("সাইন ইন প্রয়োজন", "এই পেজ দেখতে আগে সাইন ইন করুন");
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -55,7 +65,8 @@ const SignInPage = () => {
                     সাইন ইন
                 </h1>
                 <p className="text-center text-gray-500 mb-8">
-                    বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
+                    বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে
+                    ঢুকুন।
                 </p>
 
                 {error && (
@@ -106,7 +117,9 @@ const SignInPage = () => {
                         <div className="w-full border-t border-gray-200"></div>
                     </div>
                     <div className="relative flex justify-center text-xs">
-                        <span className="px-3 bg-gray-50 text-gray-500">অথবা</span>
+                        <span className="px-3 bg-gray-50 text-gray-500">
+                            অথবা
+                        </span>
                     </div>
                 </div>
 
@@ -115,7 +128,7 @@ const SignInPage = () => {
                     onClick={() =>
                         authClient.signIn.social({
                             provider: "google",
-                            callbackURL: callbackUrl,
+                            callbackURL: `/auth-success?redirect=${callbackUrl}`,
                         })
                     }
                     className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-lg py-3 hover:bg-gray-50 transition-colors shadow-sm"
@@ -131,7 +144,7 @@ const SignInPage = () => {
                     onClick={() =>
                         authClient.signIn.social({
                             provider: "github",
-                            callbackURL: callbackUrl,
+                            callbackURL: `/auth-success?redirect=${callbackUrl}`,
                         })
                     }
                     className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-lg py-3 hover:bg-gray-50 transition-colors shadow-sm mt-3"

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
-import { ToastProvider } from "@/context/ToastContext";
-import ToastContainer from "@/components/shared/ToastContainer";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { ToastProvider } from "@/context/ToastContext";
+import ToastContainer from "@/components/shared/ToastContainer";
 
 const notoSerifBengali = Noto_Serif_Bengali({
     variable: "--font-noto-serif-bengali",

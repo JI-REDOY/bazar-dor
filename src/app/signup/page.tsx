@@ -14,6 +14,27 @@ const SignUpPage = () => {
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [imagePreview, setImagePreview] = useState("");
+    const [imageBase64, setImageBase64] = useState("");
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        if (file.size > 1 * 1024 * 1024) {
+            setError("ছবি ১ মেগাবাইটের ছোট হতে হবে");
+            toast.warning("ছবি বড়", "১ মেগাবাইটের ছোট ছবি দিন");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const base64 = reader.result as string;
+            setImagePreview(base64);
+            setImageBase64(base64);
+        };
+        reader.readAsDataURL(file);
+    };
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -39,21 +60,29 @@ const SignUpPage = () => {
             name: values.name,
             email: values.email,
             password: values.password,
+            image: imageBase64 || undefined,
         });
 
-        setLoading(false);
-
         if (error) {
+            setLoading(false);
             setError(error.message || "সাইন আপ ব্যর্থ হয়েছে");
             toast.error("সাইন আপ ব্যর্থ", error.message || "আবার চেষ্টা করুন");
             return;
         }
 
         if (data?.user) {
-            toast.success("সাইন আপ সফল!", `স্বাগতম, ${data.user.name}`);
+            await authClient.signOut();
+
+            setLoading(false);
+            toast.success("সাইন আপ সফল!", "এখন সাইন ইন করুন");
+
             setTimeout(() => {
                 router.push("/signin");
+                router.refresh();
             }, 800);
+        } else {
+            setLoading(false);
+            setError("সাইন আপ সম্পন্ন হয়নি, আবার চেষ্টা করুন");
         }
     };
 
@@ -85,6 +114,50 @@ const SignUpPage = () => {
                             placeholder="যেমন: রহিম উদ্দিন"
                             className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-[#16a34a] focus:ring-1 focus:ring-[#16a34a] transition bg-white"
                         />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-800 mb-2">
+                            প্রোফাইল ছবি
+                        </label>
+
+                        {imagePreview ? (
+                            <div className="flex items-center gap-3 mb-2">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                    src={imagePreview}
+                                    alt="Preview"
+                                    className="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setImagePreview("");
+                                        setImageBase64("");
+                                    }}
+                                    className="text-xs text-red-600 hover:underline"
+                                >
+                                    মুছে ফেলুন
+                                </button>
+                            </div>
+                        ) : (
+                            <label className="flex items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-[#16a34a] transition-colors bg-white">
+                                <div className="text-center">
+                                    <p className="text-sm text-gray-600">
+                                        📷 ছবি আপলোড করতে ক্লিক করুন
+                                    </p>
+                                    <p className="text-xs text-gray-400 mt-1">
+                                        JPG, PNG (max 1MB)
+                                    </p>
+                                </div>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    className="hidden"
+                                />
+                            </label>
+                        )}
                     </div>
 
                     <div>
@@ -142,7 +215,9 @@ const SignUpPage = () => {
                         <div className="w-full border-t border-gray-200"></div>
                     </div>
                     <div className="relative flex justify-center text-xs">
-                        <span className="px-3 bg-gray-50 text-gray-500">অথবা</span>
+                        <span className="px-3 bg-gray-50 text-gray-500">
+                            অথবা
+                        </span>
                     </div>
                 </div>
 
@@ -151,7 +226,7 @@ const SignUpPage = () => {
                     onClick={() =>
                         authClient.signIn.social({
                             provider: "google",
-                            callbackURL: "/",
+                            callbackURL: "/auth-success?redirect=/",
                         })
                     }
                     className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-lg py-3 hover:bg-gray-50 transition-colors shadow-sm"
@@ -167,7 +242,7 @@ const SignUpPage = () => {
                     onClick={() =>
                         authClient.signIn.social({
                             provider: "github",
-                            callbackURL: "/",
+                            callbackURL: "/auth-success?redirect=/",
                         })
                     }
                     className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-lg py-3 hover:bg-gray-50 transition-colors shadow-sm mt-3"
